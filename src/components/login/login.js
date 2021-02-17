@@ -1,32 +1,31 @@
 import classes from './login.module.css'
 import React, {Component}from 'react'
 
-export class Login extends Component{
+ class Login extends Component{
     constructor(props){
         super(props);
         this.state={
             email:undefined,
-            password:undefined
+            password:undefined,
+            isLoggedIn:false
         }
 
     }
      validateUser=()=>{
-         console.log(this.state)
         if(this.state.email==="admin@ecommerce.com" && this.state.password==="admin123"){
             return true;
-            this.setState({email:undefined,password:undefined})
         }
         return false;
     }
 
      handleLogin =(e)=>{
-         console.log('event', e)
         if(this.validateUser()){
-            alert('Login Successful');
+            let currentState= this.state;
+            currentState.isLoggedIn=true;
             this.setState({
-                email:undefined,
-                password:undefined
+                currentState
             })
+            this.props.history.replace('/products')
             e.preventDefault();
 
         }else{
@@ -80,3 +79,4 @@ export class Login extends Component{
     }
 }
 
+export default Login;

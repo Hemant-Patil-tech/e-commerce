@@ -1,0 +1,20 @@
+.baner{
+    background-color:#00d3b2;
+    color: white;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    font-weight: bold;
+    font-size: x-large;
+    height: 15vh;
+
+}
+.left{
+    margin: 0;  
+    background-color: #9c27b05e;
+    color: white;
+}
+.arrangeBox{
+    display:flex;
+    flex-wrap: wrap;
+}

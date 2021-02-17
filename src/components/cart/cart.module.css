@@ -1,0 +1,11 @@
+.baner{
+    background-color:#00d3b2;
+    color: white;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    font-weight: bold;
+    font-size: x-large;
+    height: 15vh;
+
+}
