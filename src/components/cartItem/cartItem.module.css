@@ -1,0 +1,26 @@
+.container{
+    height: 30vh;
+    width:60vh;
+    margin:10px;
+  box-shadow: 5px 10px 18px #88888873;
+
+}
+
+.submit{
+color: red;
+background-color: white;
+border-color: red;
+width: 15vh;
+height: 5vh;
+cursor: pointer;
+text-align: center
+
+}
+
+.left{
+position: absolute;
+}
+
+.right{
+margin-left: 15%;
+}

@@ -9,3 +9,12 @@
     height: 15vh;
 
 }
+.left{
+  margin: 0;  
+  background-color: #9c27b05e;
+  color: white;
+}
+.arrangeBox{
+  display:flex;
+  flex-wrap: wrap;
+}

@@ -9,12 +9,11 @@
     height: 15vh;
 
 }
-.left{
-    margin: 0;  
-    background-color: #9c27b05e;
-    color: white;
-}
-.arrangeBox{
+.childHeader{
     display:flex;
-    flex-wrap: wrap;
+    margin-left: 2%;
+    
+}
+.header{
+    margin-right: 1%;
 }

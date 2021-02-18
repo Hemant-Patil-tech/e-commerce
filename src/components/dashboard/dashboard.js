@@ -1,15 +1,20 @@
 import react, { Component } from 'react'
-
+import { NavLink, Route, withRouter } from 'react-router-dom'
 import classes from './dashboard.module.css'
 import Header from '../header/header';
-import Product from '../product/product';
+import Electronics from '../electronics/electronics';
+import HomeAppliances from '../homeappliances/homeappliances'
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         console.log(props)
+        if (props.history.location.pathname == "/products") {
+            props.history.replace('/products/electronics')
+        }
         this.products = props.products.products;
-        this.handleClick = props.handleClick
+        this.handleClick = props.handleClick;
+        this.cartItems = props.cartItems;
     }
 
     render() {
@@ -17,31 +22,16 @@ class Dashboard extends Component {
 
         return (
             <div>
-                <Header />
+                <Header cartItems={this.cartItems} />
                 <div className={classes.baner}>
                     Products
             </div>
-                <h2 className={classes.left}>Electronics</h2>
-                <div className={classes.arrangeBox}> {
-                    this.products.map((product) => {
-                        if (product.category == "Electronics") {
-                            return <Product key={product.id} product={product} handleClick={this.handleClick} />
-                        }
-
-
-                    })
-
-                }</div>
-                <h2 className={classes.left}>Home Appliances</h2>
-
-                <div className={classes.arrangeBox}> {
-                    this.products.map((product) => {
-                        if (product.category == "Home Appliance") {
-                            return <Product key={product.id} product={product} handleClick={this.handleClick} />
-                        }
-                    })
-
-                }</div>
+                <div className={classes.childHeader}>
+                    <NavLink to='/products/electronics' style={{ textDecoration: 'none' }} className={classes.header} > Electronics </NavLink>
+                    <NavLink to='/products/homeappliances' style={{ textDecoration: 'none' }} className={classes.header}>Home Appliances</NavLink>
+                </div>
+                <Route path='/products/electronics' component={() => <Electronics products={this.products} handleClick={this.handleClick} />} ></Route>
+                <Route path='/products/homeappliances' component={() => <HomeAppliances products={this.products} handleClick={this.handleClick} />}></Route>
 
             </div>
 
@@ -49,4 +39,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
