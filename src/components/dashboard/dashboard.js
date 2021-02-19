@@ -4,12 +4,13 @@ import classes from './dashboard.module.css'
 import Header from '../header/header';
 import Electronics from '../electronics/electronics';
 import HomeAppliances from '../homeappliances/homeappliances'
+import {connect} from 'react-redux'
 import Login from '../login/login';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
+        // console.log(props)
         if(localStorage.getItem('isLoggedIn')=='false'){
             props.history.replace('/login')
         }
@@ -21,6 +22,7 @@ class Dashboard extends Component {
         this.cartItems = props.cartItems;
     }
 
+   
     render() {
 
 
@@ -44,4 +46,4 @@ class Dashboard extends Component {
     }
 }
 
-export default withRouter(Dashboard);
+export default  withRouter(Dashboard);
