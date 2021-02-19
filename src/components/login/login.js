@@ -4,6 +4,7 @@ import React, {Component}from 'react'
  class Login extends Component{
     constructor(props){
         super(props);
+        localStorage.setItem('isLoggedIn',false)
         this.state={
             email:undefined,
             password:undefined,
@@ -21,7 +22,7 @@ import React, {Component}from 'react'
      handleLogin =(e)=>{
         if(this.validateUser()){
             let currentState= this.state;
-            currentState.isLoggedIn=true;
+            localStorage.setItem('isLoggedIn',true)
             this.setState({
                 currentState
             })

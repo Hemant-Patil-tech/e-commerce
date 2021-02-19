@@ -4,11 +4,15 @@ import classes from './dashboard.module.css'
 import Header from '../header/header';
 import Electronics from '../electronics/electronics';
 import HomeAppliances from '../homeappliances/homeappliances'
+import Login from '../login/login';
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         console.log(props)
+        if(localStorage.getItem('isLoggedIn')=='false'){
+            props.history.replace('/login')
+        }
         if (props.history.location.pathname == "/products") {
             props.history.replace('/products/electronics')
         }
@@ -30,7 +34,8 @@ class Dashboard extends Component {
                     <NavLink to='/products/electronics' style={{ textDecoration: 'none' }} className={classes.header} > Electronics </NavLink>
                     <NavLink to='/products/homeappliances' style={{ textDecoration: 'none' }} className={classes.header}>Home Appliances</NavLink>
                 </div>
-                <Route path='/products/electronics' component={() => <Electronics products={this.products} handleClick={this.handleClick} />} ></Route>
+               <Route path='/products/electronics' component={() => <Electronics products={this.products} handleClick={this.handleClick} />} >
+              </Route>
                 <Route path='/products/homeappliances' component={() => <HomeAppliances products={this.products} handleClick={this.handleClick} />}></Route>
 
             </div>

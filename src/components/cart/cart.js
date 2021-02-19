@@ -1,5 +1,5 @@
 import react, {Component} from'react'
-
+import { withRouter } from 'react-router-dom'
 import classes from './cart.module.css'
 import Header from '../header/header'
 import CartItem from '../cartItem/cartItem';
@@ -9,6 +9,9 @@ class Cart extends Component{
         super(props);
         this.state=null;
         console.log(props)
+        if(localStorage.getItem('isLoggedIn')=='false'){
+            props.history.replace('/login')
+        }
         this.cart=props.products
         this.remove=props.remove
         this.cartItems=props.cartItems;
@@ -38,4 +41,4 @@ class Cart extends Component{
     }
 }
 
-export default Cart;
+export default withRouter(Cart);

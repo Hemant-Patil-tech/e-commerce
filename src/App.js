@@ -2,14 +2,17 @@
 import './App.css';
 import Login from './components/login/login'
 import React, { Suspense } from 'react'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom'
 const Dashboard = React.lazy(() => import('./components/dashboard/dashboard'));
 const Cart = React.lazy(() => import('./components/cart/cart'));
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
+
     this.state = {
+
       products: [{
         id: 0,
         itemName: 'Galaxy s20',
@@ -104,7 +107,7 @@ class App extends React.Component {
       tempState.CartItems = this.state.CartItems + 1
       console.log('cartItem', tempState)
       console.log(tempState.products[index], tempState.Cart[index])
-      debugger;
+      
       if (tempState.Cart.length > 0) {
         let count = 0;
         tempState.Cart.forEach((cartItem, i) => {
@@ -128,9 +131,6 @@ class App extends React.Component {
           })
           count++
         }
-
-
-
       } else {
         tempState.Cart.push({
           id: index,
@@ -175,16 +175,18 @@ class App extends React.Component {
 
           <div className="page-info">
             <Switch>
+            <Redirect from='/' exact to='/login' />
+
               <Route path='/login' component={Login}></Route>
               <Suspense fallback={<div>Loading...</div>}>
-                <Route path='/products' component={() => <Dashboard products={this.state} cartItems={this.state.CartItems} handleClick={addToCart} />}>
+             <Route path='/products' component={() => <Dashboard products={this.state} cartItems={this.state.CartItems} handleClick={addToCart} />}>
 
                 </Route>
                 <Route path='/cart' component={() => <Cart products={this.state} cartItems={this.state.CartItems} remove={removeFromCart} />}></Route>
               </Suspense>
-              <Route component={Login} />
-            </Switch>
 
+            </Switch>
+           
 
           </div>
 

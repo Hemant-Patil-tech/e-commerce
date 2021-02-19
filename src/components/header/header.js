@@ -5,7 +5,11 @@ import './header.css'
 const Header = (props) => {
   console.log(props.cartItems)
   const cartItems = props.cartItems
+  const logout=()=>{
 
+    localStorage.setItem('isLoggedIn',false)
+    console.log(localStorage.getItem('isLoggedIn'))
+  }
   return (
     <nav
       className="navbar"
@@ -28,7 +32,7 @@ const Header = (props) => {
           > {cartItems}
           </span >
         </NavLink >
-        <NavLink to='/login' style={{ textDecoration: 'none' }} className="navbar-item">
+        <NavLink to='/login' style={{ textDecoration: 'none' }} onClick={logout} className="navbar-item">
           Logout
                 </NavLink >
       </div>
