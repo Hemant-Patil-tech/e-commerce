@@ -99,10 +99,10 @@ class App extends React.Component {
 
               <Route path='/login' component={Login}></Route>
               <Suspense fallback={<div>Loading...</div>}>
-          { this.props.state ?   <Route path='/products' component={() => <Dashboard products={this.props.state} cartItems={this.props.state.CartItems} handleClick={addToCart} />}>
+          { this.props.state ?   <Route path='/products' component={() => <Dashboard products={this.props.state} cartItems={this.props.state.CartItems} handleClick={this.props.addToCart} />}>
 
                 </Route> :null}
-                { this.props.state ?     <Route path='/cart' component={() => <Cart products={this.props.state} cartItems={this.props.state.CartItems} remove={removeFromCart} />}>
+                { this.props.state ?     <Route path='/cart' component={() => <Cart products={this.props.state} cartItems={this.props.state.CartItems} remove={this.props.removeFromCart} />}>
                 </Route> :null}
               </Suspense>
 
@@ -126,7 +126,12 @@ const mapStateToProps = (state)=>{
 }
 
 const mapDispatchToProps = (dispatch)=>{
- return {getInitialState: () => dispatch({type:'GET_INITIAL_STATE'})}
+ return {
+         getInitialState: () => dispatch({type:'GET_INITIAL_STATE'}),
+         addToCart:(id)=>dispatch({type:'ADD_TO_CART', index:id}),
+         removeFromCart:(id)=>dispatch({type:'REMOVE_FROM_CART', index:id})
+        }
+
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
